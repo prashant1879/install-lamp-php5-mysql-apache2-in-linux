@@ -1,0 +1,54 @@
+********************************************************************************
+Description : Install PHP5, MySQL/phpmyadmin & Apache2 in Linux ( Fresh Installation )  
+********************************************************************************
+
+#Step 1 : Install Tasksel
+sudo apt-get -y install tasksel
+
+#Step 2 : Install LAMP
+sudo tasksel install lamp-server
+
+#Step 3 : Install PHPMyAdmin
+sudo apt-get install phpmyadmin
+
+#Step 4 : Follow Instuction on screen for username and password for phpmyadmin.
+
+#Step 5 : Set group to www-data
+sudo chgrp www-data /var/www/html
+
+#Step 5 : Make it writable for the group
+sudo chmod 775 /var/www/html
+
+#Step 6 : Set GID to www-data for all sub-folders
+sudo chmod g+s /var/www/html
+
+#Step 7 : Add your username to www-data group / username you must want to change. 
+sudo usermod -a -G www-data username
+
+#Step 8 : Finally change ownership to username
+sudo chown username /var/www/html
+
+# Your account shouldn't have any more permission issues
+# Now install extra modules for PHP platform. 
+
+#Step 9 : Install Curl
+sudo apt-get install php5-curl
+
+#Step 10 : Install Mycrypt
+sudo apt-get install php5-mcrypt
+
+#Activate Mcrypt
+#Step 11 : Enable extension
+sudo php5enmod mcrypt
+
+#Step 12 : Restart Apache
+sudo service apache2 reload
+
+#Enable Mod-Rewrite
+#Step 13 : enable rewrite
+sudo a2enmod rewrite
+
+#Step 14 : restart apache
+sudo service apache2 restart
+
+********************************************************************************
